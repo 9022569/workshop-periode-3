@@ -272,8 +272,8 @@ CREATE TABLE `producten` (
 -- Dumping data for table `producten`
 --
 
-INSERT INTO `producten` (`ProductID`, `LeveranciersID`, `ProductNaam`, `Merk`, `Prijs`, `Omschrijving`, `Foto`, `voorraad`, `Productkleur`, `Capaciteit`, `RAM`, `Schermgrootte`, `Camera`, `OS`, `Uitkomstjaar`) VALUES
-(1, 2, 'Smartphone A', 'Samsung', 599.99, 'Een geweldige smartphone met indrukwekkende functies.', 'https://example.com/smartphone_a.jpg', 100, 'Zwart', '128GB', '6GB', '6.4 inches', '48MP + 12MP', 'Android', '2014-06-15'),
+INSERT INTO `producten` (`S
+(1, 2, 'Smartphone A', 'Samsung', 5ProductID`, `LeveranciersID`, `ProductNaam`, `Merk`, `Prijs`, `Omschrijving`, `Foto`, `voorraad`, `Productkleur`, `Capaciteit`, `RAM`, `Schermgrootte`, `Camera`, `OS`, `Uitkomstjaar`) VALUE99.99, 'Een geweldige smartphone met indrukwekkende functies.', 'https://example.com/smartphone_a.jpg', 100, 'Zwart', '128GB', '6GB', '6.4 inches', '48MP + 12MP', 'Android', '2014-06-15'),
 (2, 3, 'Smartphone B', 'Apple', 799.99, 'De nieuwste iPhone met krachtige prestaties.', 'https://example.com/smartphone_b.jpg', 50, 'Zilver', '256GB', '8GB', '6.7 inches', '12MP + 12MP + 12MP', 'iOS', '2014-06-05'),
 (3, 4, 'Smartphone C', 'OnePlus', 699.99, 'Een betaalbare smartphone met vlaggenschipfuncties.', 'https://example.com/smartphone_c.jpg', 75, 'Blauw', '256GB', '12GB', '6.5 inches', '64MP + 16MP + 8MP', 'Android', '2014-08-20'),
 (4, 5, 'Smartphone D', 'Xiaomi', 499.99, 'Een krachtige smartphone voor een betaalbare prijs.', 'https://example.com/smartphone_d.jpg', 120, 'Zwart', '128GB', '6GB', '6.3 inches', '48MP + 8MP + 5MP', 'Android', '2015-10-04'),
