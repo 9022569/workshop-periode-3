@@ -99,7 +99,11 @@ footer li{
 }
 #Footer_Product_title, #Footer_social_title{
     font-weight: bold;
+    background-color:#333333;
+    padding: 5px;
     font-size: 25px;
+    box-shadow: 2px 2px 4px black;
+
 }
 .social-icons img{
     margin-right: 10px;

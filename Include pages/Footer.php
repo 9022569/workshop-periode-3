@@ -1,10 +1,8 @@
 <footer>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-o7GpxMyE/Id0mFrO76BHgkDTM4lLzbi3LGaTOhcuEQo5wOlnXgMmYbGzSdHXdQQb3PGBRwXUvxRnG8vO7ZGuGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <img src="../Images/Mobile magic logo.png" alt="footer Logo" class="footer_logo">
     <table>
         <ul>
             <li id="Footer_Product_title">Most Popular Products</li>
-        
             <?php
             include "functions.php";
             try {
