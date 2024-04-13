@@ -1,29 +1,26 @@
 <footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-o7GpxMyE/Id0mFrO76BHgkDTM4lLzbi3LGaTOhcuEQo5wOlnXgMmYbGzSdHXdQQb3PGBRwXUvxRnG8vO7ZGuGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <img src="../Images/Mobile magic logo.png" alt="footer Logo" class="footer_logo">
-    <div class="footer_list_1">
-    </div>
     <table>
-        <tr class="footer_items">
-            <th>Most Expensive Products</th>
-        </tr>
-        <?php
-        include "functions.php";
-        try {
-            $products = getProducts();
-            printCrudFooter($products);
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
-        ?>
-        <tr class="footer_socials"> 
-            <th>Our Socials</th>
-
-            <td><a href="https://www.Github.com">"><img src="../Images/Github logo.png" alt="Github logo" class="footer_logo">Github</a></td>
-            <td><a href="https://www.twitter.com"><img src="../Images/Twitter logo.png" alt="Twitter logo" class="footer_logo">Twitter/X</a></td>
-            <td><a href="https://www.instagram.com"><img src="../Images/Instagram logo.png" alt="Instagram logo" class="footer_logo">Instagram</a></td>
-            <td><a href="https://www.E-mail.com"><img src="../Images/E-mail logo.png" alt="E-mail logo" class="footer_logo"> E-mail</a></td>
-        </tr>
+        <ul>
+            <li id="Footer_Product_title">Most Popular Products</li>
         
+            <?php
+            include "functions.php";
+            try {
+                $products = getProducts();
+                printCrudFooter($products);
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            ?>
+        </ul>
+    <ul class="social-icons">
+            <li id="Footer_social_title">Social Media</li>
+            <li><a href="https://github.com"><img src="../Images/Github.png" alt="Github">Github</a></li>
+            <li><a href="https://instagram.com"><img src="../Images/Instagram.png" alt="Instagram">Instagram</a></li>
+            <li><a href="https://twitter.com"><img src="../Images/X.png" alt="Twitter">Twitter/X</a></li>
+            <li><a href="mailto:Rawr@example.com"><img src="../Images/Gmail.png" alt="Email">Email</a></li>
+    </ul>
 
-    </table>
 </footer>

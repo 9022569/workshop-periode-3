@@ -37,11 +37,11 @@ include_once "config.php";
     $headers = array_keys($result[0]);
     foreach ($result as $row) {
         // print elke kolom uit de huidige rij
-        echo "<tr class='footer-item-row'>";
+        echo "<ul>";
         foreach ($headers as $header) {
-            echo "<td class='footer-item-cell'>" . $row[$header] . "</td>";
+            echo "<li>" . $row[$header] . "</li>";
         }
-        echo "</tr>";
+        echo "</ul>";
         
      }
 

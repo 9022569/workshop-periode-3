@@ -78,19 +78,36 @@
 /* Footer styles */
 footer{
     display: flex;
-    align-items: center;
+    align-items:center;
     position: absolute;
+    text-align: center;
+    justify-content: space-between;
     background-color:#171717;
     bottom: 0;
     width: 100%;
-}
-.footer_table_1{
-    padding: 10px; 
     color:white;
-    text-align: white;
 }
-.footer_items{
-    Display: flex;
-    justify-content: space-between;
-    align-items: center;
+.footer_logo{
+    height:5%;
+    width: auto;
+}
+footer li{
+    display:flex;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: 7%;
+}
+#Footer_Product_title, #Footer_social_title{
+    font-weight: bold;
+    font-size: 25px;
+}
+.social-icons img{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+.social-icons li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
 }
