@@ -3,6 +3,7 @@
         <li><a href="index.php">Home Pagina</a></li>
         <li><a href="tabellen.php">Tabellen lijst</a></li>
         <li><a href="FAQ.php">FAQ</a></li>
+        <li><a href="medewerkers.php">Medewerkers</a></li>
         <li><a href="info.php">Info over bedrijf</a></li>
         <li class="dropdown">
             <button class="dropbtn">Klachten of complimenten</button>
