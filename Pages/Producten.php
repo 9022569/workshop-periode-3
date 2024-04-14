@@ -12,7 +12,17 @@
     </nav>
 </header>
 <body>
-    
+    <?php
+    include_once "../Include pages/functions.php";
+
+    try {
+        $products = getProducts("producten");
+        printCrudProducts($products);
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    ?>
+
 </body>
 <footer>
     <?php include "../Include pages/Footer.php"; ?>

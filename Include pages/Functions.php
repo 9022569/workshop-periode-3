@@ -3,33 +3,38 @@
 
 include_once "config.php";
 
- function connectDb(){
-    $servername = SERVERNAME;
-    $username = USERNAME;
-    $password = PASSWORD;
-    $dbname = DATABASE;
-   
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        //echo "Connected successfully";
-        return $conn;
-    } 
-    catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+// Define the connectDb() function only if it's not already defined
+if (!function_exists('connectDb')) {
+    function connectDb(){
+        $servername = SERVERNAME;
+        $username = USERNAME;
+        $password = PASSWORD;
+        $dbname = DATABASE;
+       
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            return $conn;
+        } 
+        catch(PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
-
- }
-
- function getProducts(){
-    $conn = connectDb();
-    $sql = "SELECT productnaam FROM producten ORDER BY prijs DESC LIMIT 5";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    return $stmt->fetchAll();
 }
+include_once "config.php";
+if (!function_exists('GetFooterProducts')) {
+    function GetFooterProducts(){
+        $conn = connectDb();
+        $sql = "SELECT productnaam FROM producten ORDER BY prijs DESC LIMIT 5";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+}
+
+
 
 
  function printCrudFooter($result){
@@ -44,5 +49,34 @@ include_once "config.php";
         echo "</ul>";
         
      }
+}
+function getProducts($products){
+    // Connect database
+    $conn = connectDb();
+    // Select data uit de opgegeven table methode prepare
+    $sql = "SELECT * FROM " . $products . " WHERE ProductID = :ProductID";
+    $query = $conn->prepare($sql);
+    $query->execute([':ProductID'=>$products]); // Change $Products to $products
+    $result = $query->fetch();
 
+    return $result;
+}
+
+function printCrudProducts($result){
+    // Check if $result is an array
+    if(is_array($result)) {
+        // haal de kolommen uit de eerste rij [0] van het array $result mbv array_keys
+        $headers = array_keys($result[0]);
+        foreach ($result as $row) {
+            // print elke kolom uit de huidige rij
+            echo "<ul>";
+            foreach ($headers as $header) {
+                echo "<li>" . $row[$header] . "</li>";
+            }
+            echo "</ul>";
+        }
+    } else {
+        // Handle the case when $result is false (error occurred)
+        echo "Error: Unable to retrieve products.";
+    }
 }

@@ -6,7 +6,7 @@
             <?php
             include "functions.php";
             try {
-                $products = getProducts();
+                $products = GetfooterProducts();
                 printCrudFooter($products);
             } catch (Exception $e) {
                 echo "Error: " . $e->getMessage();
