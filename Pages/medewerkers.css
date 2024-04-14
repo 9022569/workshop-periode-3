@@ -1,5 +1,22 @@
 .medewerkers {
     background-color: #304D6D;
-    height: 120vh;
-    width: 100vw;
+    height: 100vh;
+    width: 99vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Drie kolommen met gelijke breedte */
+    gap: 20px; /* Ruimte tussen de afbeeldingen en de tekst */
+    padding: 20px;
+}
+
+.medewerker {
+    width: 75%;
+}
+
+.medewerker img {
+    width: 100%; /* Afbeeldingen vullen de beschikbare ruimte */
+}
+
+.medewerker p {
+    text-align: center; /* Tekst gecentreerd onder de afbeeldingen */
+    color: white; /* Witte tekst voor betere leesbaarheid op de achtergrond */
 }
