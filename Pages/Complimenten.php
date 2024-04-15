@@ -41,5 +41,9 @@
     </div>
 </main>
 
+<footer>
+    <?php include "../Include pages/Footer.php"; ?>
+</footer>
+
 </body>
 </html>
