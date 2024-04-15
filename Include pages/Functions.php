@@ -50,33 +50,3 @@ if (!function_exists('GetFooterProducts')) {
         
      }
 }
-function getProducts($products){
-    // Connect database
-    $conn = connectDb();
-    // Select data uit de opgegeven table methode prepare
-    $sql = "SELECT * FROM " . $products . " WHERE ProductID = :ProductID";
-    $query = $conn->prepare($sql);
-    $query->execute([':ProductID'=>$products]); // Change $Products to $products
-    $result = $query->fetch();
-
-    return $result;
-}
-
-function printCrudProducts($result){
-    // Check if $result is an array
-    if(is_array($result)) {
-        // haal de kolommen uit de eerste rij [0] van het array $result mbv array_keys
-        $headers = array_keys($result[0]);
-        foreach ($result as $row) {
-            // print elke kolom uit de huidige rij
-            echo "<ul>";
-            foreach ($headers as $header) {
-                echo "<li>" . $row[$header] . "</li>";
-            }
-            echo "</ul>";
-        }
-    } else {
-        // Handle the case when $result is false (error occurred)
-        echo "Error: Unable to retrieve products.";
-    }
-}

@@ -1,11 +1,10 @@
 <nav class="nav">
     <ul>
-        <li><a href="index.php">Home Pagina</a></li>
-        <li><a href="tabellen.php">Tabellen lijst</a></li>
-        <li><a href="Producten.php">Bekijk al onze producten!</a></li>
-        <li><a href="FAQ.php">FAQ</a></li>
-        <li><a href="medewerkers.php">Belangrijke medewerkers</a></li>
-        <li><a href="info.php">Info over bedrijf</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="Producten.php">Check out our products here</a></li>
+        <li><a href="Medewerkers.php">Meet our team</a></li>
+        <li><a href="geschiedenis.php">Our history</a></li>
+        <li><a href="Doelen.php">Our goals</a></li>
         <li class="dropdown">
             <button class="dropbtn">Klachten of complimenten</button>
             <div class="dropdown-content">
