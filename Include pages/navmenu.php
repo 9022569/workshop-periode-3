@@ -8,7 +8,7 @@
         <li class="dropdown">
             <button class="dropbtn">Klachten of complimenten</button>
             <div class="dropdown-content">
-                <a href="compliment.php">Complimenteren</a>
+                <a href="complimenten.php">Complimenteren</a>
                 <a href="klachtweb.php">Klacht over website</a>
                 <a href="klachtproduct.php">Klacht over product</a>
                 <a href="klachtwerker.php">Klacht over medewerker</a>

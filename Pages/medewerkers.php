@@ -8,7 +8,7 @@
 </head>
 <header>
     <nav>
-        <?php include "../Include pages/navmenu.php"; ?>
+        <?php include "../Include pages/Navmenu.php"; ?>
     </nav>
 </header>
 <body>

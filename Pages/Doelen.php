@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <?php include "../Include pages/Navmenu.php"; ?>
+    </header>
     <div class="container">
         <div class="content">
             <h1>Milieubewustzijn bij Mobile Magic</h1>
@@ -21,5 +24,8 @@
             <p>Door ons in te zetten voor milieubewuste praktijken, streven we ernaar om een positieve impact te hebben op het milieu en een duurzame toekomst te bevorderen.</p>
         </div>
     </div>
+    <footer>
+        <?php include "../Include pages/Footer.php"; ?>
+    </footer>
 </body>
 </html>

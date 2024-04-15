@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <?php include "../Include pages/Navmenu.php"; ?>
+    </header>
     <div class="container">
         <div class="content">
             <h1>Klachtenformulier</h1>
@@ -82,6 +85,9 @@
             <?php } ?>
         </div>
     </div>
+    <footer>
+        <?php include "../Include pages/Footer.php"; ?>
+    </footer>
 </body>
 </html>
 

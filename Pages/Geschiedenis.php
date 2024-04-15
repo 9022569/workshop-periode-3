@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <?php include "../Include pages/Navmenu.php"; ?>
+    </header>
     <div class="container">
         <div class="content">
             <h1>Over Mobile Magic</h1>
@@ -23,6 +26,9 @@
             <p>Door voortdurende innovatie en een toewijding aan kwaliteit zijn we er trots op een breed scala aan mobiele apparaten en diensten aan te bieden die voldoen aan de behoeften van onze diverse klantenkring.</p>
         </div>
     </div>
+    <footer>
+        <?php include "../Include pages/Footer.php"; ?>
+    </footer>
 </body>
 </html>
 
