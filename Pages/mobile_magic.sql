@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `mobile magic`
+-- Made and filled in by Dylan van Schouwen; 2023-2024
 --
 
 -- --------------------------------------------------------
