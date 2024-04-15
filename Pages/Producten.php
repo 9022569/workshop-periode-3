@@ -31,7 +31,7 @@
         ?>
     </section>
     <script>
-        // JavaScript for adding to cart functionality
+        // JavaScript for adding to cart functionality 
         function addToCart(productName) {
             alert("Added " + productName + " to cart!");
         }
