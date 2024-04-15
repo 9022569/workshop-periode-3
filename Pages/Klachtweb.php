@@ -20,15 +20,7 @@
 
             <label for="postcode">Postcode:</label>
             <input type="text" id="postcode" name="postcode" required><br><br>
-
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select><br><br>
-
+            
             <label for="complaint">Complaint Description:</label><br>
             <textarea id="complaint" name="complaint" rows="4" cols="50" required></textarea><br><br>
 

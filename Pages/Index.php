@@ -6,12 +6,13 @@
     <title>Index.php</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="Index-body">
-    <header>
+<header>
         <nav>
             <?php include "../Include pages/navmenu.php"; ?>
         </nav>
     </header>
+<body id="Index-body">
+
     <div class="container">
         <div class="search-container">
             <form action="search.php" method="GET">
@@ -32,8 +33,9 @@
             </div>
         </div>
     </div>
-    <footer>
-        <?php include "../Include pages/Footer.php"; ?>
-    </footer>
+    
 </body>
+<footer>
+        <?php include "../Include pages/Footer.php"; ?>
+</footer>
 </html>
