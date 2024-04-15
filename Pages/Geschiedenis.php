@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Over Mobile Magic</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Style geschie.css">
+    <link rel="stylesheet" href="Style geschiedenis.css">
 </head>
 <body>
     <header>
