@@ -97,10 +97,10 @@ function printCrudProducts($products) {
             echo "<p class='product-price'>Price: $" . $product['Prijs'] . "</p>";
             echo "<p class='product-description'>" . $product['Omschrijving'] . "</p>";
             echo "<button onclick='addToCart(\"" . $product['ProductNaam'] . "\")' class='add-to-cart-btn'>Add to Cart</button>";
-            echo "</div>"; // Closing product-info div
-            echo "</div>"; // Closing product div
+            echo "</div>"; 
+            echo "</div>"; 
         }
-        echo "</div>"; // Closing product-container div
+        echo "</div>"; 
     }
 }
 
