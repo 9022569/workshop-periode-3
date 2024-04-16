@@ -7,6 +7,7 @@
 
 /* Navbar styles */
 .nav {
+    align-items: center;
     background-color: rgb(49, 49, 49);
     padding: 10px;
     text-align: center;
@@ -21,6 +22,8 @@
 
 .nav li {
     display: inline-flex;
+    justify-items: center;
+    justify-content: space-evenly;
     margin-right: 10px; /* Ruimte tussen de buttons */
 }
 
@@ -78,6 +81,9 @@
     transition: background-color 0.3s;
 }
 
+.dropbtn:hover {
+    background-color: #243a51; /* kleur verandert op hover */
+}
 /* Footer styles */
 footer {
     display: flex;
@@ -350,7 +356,7 @@ body {
     align-items: center;
     height: 100vh;
     padding: 0 20px;
-    background: radial-gradient(circle, #BDC4A7, #79A9D1, #304D6D);
+    background: radial-gradient(circle, #bbcd80, #adbf78, #F3F9D2);
     animation: gradient-animation 10s ease infinite;
 }
 

@@ -4,7 +4,7 @@
         <ul>
             <li id="Footer_Product_title">Most Popular Products</li>
             <?php
-            include "functions.php";
+            include_once "../Include pages/functions.php";
             try {
                 $products = GetfooterProducts();
                 printCrudFooter($products);

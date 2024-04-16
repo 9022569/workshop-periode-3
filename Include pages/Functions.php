@@ -23,7 +23,6 @@ if (!function_exists('connectDb')) {
         }
     }
 }
-include_once "config.php";
 if (!function_exists('GetFooterProducts')) {
     function GetFooterProducts(){
         $conn = connectDb();
@@ -33,10 +32,6 @@ if (!function_exists('GetFooterProducts')) {
         return $stmt->fetchAll();
     }
 }
-
-
-
-
  function printCrudFooter($result){
     // haal de kolommen uit de eerste rij [0] van het array $result mbv array_keys
     $headers = array_keys($result[0]);
@@ -53,9 +48,6 @@ if (!function_exists('GetFooterProducts')) {
 
 // Function to retrieve product data from the database
 function GetProducts() {
-    // Include config file
-    include_once "config.php";
-
     // Establish database connection
     $conn = connectDb();
 
@@ -82,6 +74,7 @@ function GetProducts() {
     }
 }
 
+
 // Function to print product data
 function printCrudProducts($products) {
     if (empty($products)) {
@@ -96,6 +89,8 @@ function printCrudProducts($products) {
             echo "<p class='product-brand'>Brand: " . $product['Merk'] . "</p>";
             echo "<p class='product-price'>Price: $" . $product['Prijs'] . "</p>";
             echo "<p class='product-description'>" . $product['Omschrijving'] . "</p>";
+            echo "<a href='edit_product.php?id=" . $product['ProductID'] . "' class='edit-product-btn'>Edit</a>";
+            echo "<button onclick='deleteProduct(" . $product['ProductID'] . ")' class='delete-product-btn'>Delete</button>";
             echo "<button onclick='addToCart(\"" . $product['ProductNaam'] . "\")' class='add-to-cart-btn'>Add to Cart</button>";
             echo "</div>"; 
             echo "</div>"; 
@@ -114,12 +109,63 @@ function searchProducts($search_term) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Function to get product details by ID
-function getProductById($product_id) {
-    $conn = connectDb();
-    $sql = "SELECT * FROM Producten WHERE id = :product_id";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+function getProductById($pdo, $productID) {
+    // Prepare SQL statement
+    $stmt = $pdo->prepare("SELECT * FROM Producten WHERE ProductID = :productID");
+
+    // Bind parameter
+    $stmt->bindParam(':productID', $productID);
+
+    // Execute statement
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Fetch product data
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Return product data
+    return $product;
+}
+
+
+// Function to handle login process
+function loginUser($username, $password) {
+    // Get database connection
+    $conn = connectDb();
+    
+    // Prepare and execute SQL statement to fetch user data
+    $sql = "SELECT * FROM users WHERE username = :username";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    // Check if user exists and password is correct
+    if ($user && password_verify($password, $user['password'])) {
+        // Login successful, set session variable and return true
+        $_SESSION['username'] = $username;
+        return true;
+    } else {
+        // Login failed, return false
+        return false;
+    }
+}
+
+// Function to check if user is logged in
+function isLoggedIn() {
+    return isset($_SESSION['username']);
+}
+
+// Function to logout user
+function logoutUser() {
+    // Unset all session variables
+    $_SESSION = array();
+    
+    // Destroy the session
+    session_destroy();
+}
+
+// Function to redirect user
+function redirect($url) {
+    header("Location: $url");
+    exit();
 }

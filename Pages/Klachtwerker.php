@@ -2,20 +2,6 @@
 <!-- Klachtwerker.php 
     Author: Ethan
 -->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Complaint Form</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<header>
-        <nav>
-            <?php include "../Include pages/navmenu.php"; ?>
-        </nav>
-    </header>
-<body id="Index-body">
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +15,7 @@
         <?php include "../Include pages/Navmenu.php"; ?>
     </header>
     <div class="form-container">
-        <form action="EmployeeComplaint_process.php" method="POST" class="form">
+        <form action="" method="POST" class="form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
 
@@ -48,9 +34,6 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <footer>
-        <?php include "../Include pages/Footer.php"; ?>
-    </footer>
 </body>
 </html>
     

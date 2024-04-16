@@ -1,5 +1,5 @@
 <nav class="nav">
-    <ul>
+    <ul class="nav-links">
         <li><a href="index.php">Home</a></li>
         <li><a href="Producten.php">Check out our products here</a></li>
         <li><a href="Medewerkers.php">Meet our team</a></li>
@@ -14,5 +14,10 @@
                 <a href="klachtwerker.php">Klacht over medewerker</a>
             </div>
         </li>
+        <li><a href="Bestellingen.php">Your orders</a></li> 
     </ul>
-</nav>
+    </nav>
+    
+
+
+

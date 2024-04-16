@@ -16,9 +16,11 @@
 </header>
 <body>
     <section>
+        <button onclick='addProduct()' class='add-product-btn'>Add Product</button>
         <?php
         include "../Include pages/functions.php";
         try {
+            $products = GetProducts();
             // Check if a search query is present
             if(isset($_GET['search']) && !empty($_GET['search'])) {
                 $search_term = $_GET['search'];
@@ -38,6 +40,12 @@
         function addToCart(productName) {
             alert("Added " + productName + " to cart!");
         }
+        function deleteProduct(productId) {
+        if (confirm('Are you sure you want to delete this product?')) {
+            // Redirect to delete_product.php with the product ID
+            window.location.href = 'delete_product.php?id=' + productId;
+        }
+    }
     </script>
 </body>
 <footer>
