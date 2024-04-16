@@ -109,37 +109,6 @@ function searchProducts($search_term) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getProductById($pdo, $productID) {
-    // Prepare SQL statement
-    $stmt = $pdo->prepare("SELECT * FROM Producten WHERE ProductID = :productID");
-
-    // Bind parameter
-    $stmt->bindParam(':productID', $productID);
-
-    // Execute statement
-    $stmt->execute();
-
-    // Fetch product data
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Return product data
-    return $product;
-}
-
-
-// Function to handle login process
-function loginUser($username, $password) {
-    // Get database connection
-    $conn = connectDb();
-    
-    // Prepare and execute SQL statement to fetch user data
-    $sql = "SELECT * FROM users WHERE username = :username";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
 function displayBestellingenTable() {
     // Verbinding maken met de database
     $conn = connectDb();
@@ -167,5 +136,92 @@ function displayBestellingenTable() {
         echo "</table>";
     } else {
         echo "Geen resultaten gevonden";
+    }
+}
+// Function to update product data
+function updateProduct($data) {
+    $conn = connectDb();
+    
+    // Prepare SQL statement to update product
+    $sql = "UPDATE Producten SET ProductNaam = :ProductNaam, Merk = :Merk, Prijs = :Prijs, Omschrijving = :Omschrijving WHERE ProductID = :ProductID";
+    
+    try {
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+        
+        // Bind parameters
+        $stmt->bindParam(':ProductNaam', $data['ProductNaam']);
+        $stmt->bindParam(':Merk', $data['Merk']);
+        $stmt->bindParam(':Prijs', $data['Prijs']);
+        $stmt->bindParam(':Omschrijving', $data['Omschrijving']);
+        $stmt->bindParam(':ProductID', $data['ProductID']);
+        
+        // Execute the statement
+        $stmt->execute();
+        
+        // Check if any rows were affected
+        if ($stmt->rowCount() > 0) {
+            return true; // Updated successfully
+        } else {
+            return false; // No rows affected, probably no change made
+        }
+    } catch (PDOException $e) {
+        // Error handling
+        throw new Exception("Error updating product: " . $e->getMessage());
+    }
+}
+
+// Function to get product data by ID
+function getProduct($ProductID) {
+    $conn = connectDb();
+    
+    // Prepare SQL statement to select product by ID
+    $sql = "SELECT * FROM Producten WHERE ProductID = :ProductID";
+    
+    try {
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+        
+        // Bind parameter
+        $stmt->bindParam(':ProductID', $ProductID);
+        
+        // Execute the statement
+        $stmt->execute();
+        
+        // Fetch the product data
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $product;
+    } catch (PDOException $e) {
+        // Error handling
+        throw new Exception("Error retrieving product: " . $e->getMessage());
+    }
+}
+// Function to delete a product by ID
+function deleteProduct($product_id) {
+    $conn = connectDb();
+    
+    // Prepare SQL statement to delete product
+    $sql = "DELETE FROM Producten WHERE ProductID = :ProductID";
+    
+    try {
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+        
+        // Bind parameter
+        $stmt->bindParam(':ProductID', $product_id);
+        
+        // Execute the statement
+        $stmt->execute();
+        
+        // Check if any rows were affected
+        if ($stmt->rowCount() > 0) {
+            return true; // Deleted successfully
+        } else {
+            return false; // No rows affected, product may not exist
+        }
+    } catch (PDOException $e) {
+        // Error handling
+        throw new Exception("Error deleting product: " . $e->getMessage());
     }
 }

@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 /* Navbar styles */
@@ -185,6 +186,12 @@ footer li {
     font-size: 18px;
     color: #333;
 }
+#Product-form label{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .product-brand,
 .product-price {
@@ -196,21 +203,73 @@ footer li {
     margin-bottom: 10px; /* text wat van het bodem af */
     color: #777;
 }
-
-.add-to-cart-btn {
-    padding: 5px 10px;
+.add_product_btn{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+.edit-product-btn,
+.delete-product-btn,
+.add-to-cart-btn, 
+.add_product_btn {
+    text-decoration: none;
+    box-shadow: #171717 2px 2px 4px;
+    padding: 8px 16px; /* Adjust padding for consistency */
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 5px; /* Adjust margin for spacing */
 }
 
+.edit-product-btn:hover,
+.delete-product-btn:hover,
 .add-to-cart-btn:hover {
     background-color: #0056b3;
 }
 
+.edit-process-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F3F9D2;
+}
+
+.edit-process-content {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.edit-process-header {
+    text-align: center;
+    background-color: #79A9D1;
+    color: #fff;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.edit-process-body {
+    padding: 20px;
+}
+
+.edit-process-footer {
+    text-align: center;
+    background-color: #BDC4A7;
+    color: #2F2F2F;
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 /* Complaint Form CSS */
 .form-container {
     display: flex;
