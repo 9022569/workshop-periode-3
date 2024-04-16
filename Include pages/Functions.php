@@ -137,35 +137,35 @@ function loginUser($username, $password) {
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    // Check if user exists and password is correct
-    if ($user && password_verify($password, $user['password'])) {
-        // Login successful, set session variable and return true
-        $_SESSION['username'] = $username;
-        return true;
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function displayBestellingenTable() {
+    // Verbinding maken met de database
+    $conn = connectDb();
+
+    // SQL-query om bestellingen op te halen
+    $sql = "SELECT * FROM bestellingen";
+
+    // Uitvoeren van de query
+    $stmt = $conn->query($sql);
+
+    // Controleren of er resultaten zijn
+    if ($stmt->rowCount() > 0) {
+        // Output van gegevens in een tabel
+        echo "<table>";
+        echo "<tr><th>Bestelling Nummer</th><th>Product Naam</th><th>Leverancier Naam</th><th>Totaalprijs</th><th>Besteldatum</th></tr>";
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>" . $row["bestellingnummer"] . "</td>";
+            echo "<td>" . $row["productnaam"] . "</td>";
+            echo "<td>" . $row["leveranciernaam"] . "</td>";
+            echo "<td>" . $row["totaalprijs"] . "</td>";
+            echo "<td>" . $row["besteldatum"] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
     } else {
-        // Login failed, return false
-        return false;
+        echo "Geen resultaten gevonden";
     }
-}
-
-// Function to check if user is logged in
-function isLoggedIn() {
-    return isset($_SESSION['username']);
-}
-
-// Function to logout user
-function logoutUser() {
-    // Unset all session variables
-    $_SESSION = array();
-    
-    // Destroy the session
-    session_destroy();
-}
-
-// Function to redirect user
-function redirect($url) {
-    header("Location: $url");
-    exit();
 }

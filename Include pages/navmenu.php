@@ -14,7 +14,7 @@
                 <a href="klachtwerker.php">Klacht over medewerker</a>
             </div>
         </li>
-        <li><a href="Bestellingen.php">Your orders</a></li> 
+        <li><a href="Bestellingen.php">Your orders</a></li>
     </ul>
     </nav>
     
