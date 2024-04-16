@@ -123,3 +123,33 @@ function getProductById($product_id) {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function displayBestellingenTable() {
+    // Verbinding maken met de database
+    $conn = connectDb();
+
+    // SQL-query om bestellingen op te halen
+    $sql = "SELECT * FROM bestellingen";
+
+    // Uitvoeren van de query
+    $stmt = $conn->query($sql);
+
+    // Controleren of er resultaten zijn
+    if ($stmt->rowCount() > 0) {
+        // Output van gegevens in een tabel
+        echo "<table>";
+        echo "<tr><th>Bestelling Nummer</th><th>Product Naam</th><th>Leverancier Naam</th><th>Totaalprijs</th><th>Besteldatum</th></tr>";
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>" . $row["bestellingnummer"] . "</td>";
+            echo "<td>" . $row["productnaam"] . "</td>";
+            echo "<td>" . $row["leveranciernaam"] . "</td>";
+            echo "<td>" . $row["totaalprijs"] . "</td>";
+            echo "<td>" . $row["besteldatum"] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Geen resultaten gevonden";
+    }
+}
