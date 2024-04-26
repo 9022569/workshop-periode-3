@@ -1,6 +1,6 @@
 <?php
 // Functie: bewerk bestelling
-// Auteur: Ethan Plaisier
+// Auteur: Ethan
 
 include_once "../Include pages/functions.php";
 

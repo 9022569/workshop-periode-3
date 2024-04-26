@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Insert_bestelling.php 
-    Author: Ethan Plaisier
+    Author: Ethan
 -->
 <html lang="en">
 <head>
