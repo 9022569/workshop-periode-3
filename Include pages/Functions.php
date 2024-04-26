@@ -131,6 +131,8 @@ function displayBestellingenTable() {
             echo "<td>" . $row["leveranciernaam"] . "</td>";
             echo "<td>" . $row["totaalprijs"] . "</td>";
             echo "<td>" . $row["besteldatum"] . "</td>";
+            echo "<td><a href='Bestellingen_edit.php?bestellingid=" . $row['bestellingid'] . "'>" . "Wijzig</a></td>";
+            echo "<td><a href='Bestellingen_delete.php?bestellingid=" . $row['bestellingid'] . "'>" . "Verwijderen</a></td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -138,6 +140,159 @@ function displayBestellingenTable() {
         echo "Geen resultaten gevonden";
     }
 }
+// Functie om bestellingen te filteren op basis van productnaam of leveranciernaam
+function displayFilteredBestellingenTable($search_keyword) {
+    $conn = connectDb();
+    
+    // SQL-query om bestellingen op te halen op basis van productnaam of leveranciernaam
+    $sql = "SELECT * FROM bestellingen WHERE productnaam LIKE :search_keyword OR leveranciernaam LIKE :search_keyword";
+    
+    // Uitvoeren van de query
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':search_keyword', "%$search_keyword%", PDO::PARAM_STR);
+    $stmt->execute();
+    
+    // Controleren of er resultaten zijn
+    if ($stmt->rowCount() > 0) {
+        // Output van gegevens in een tabel
+        echo "<table>";
+        echo "<tr><th>Bestelling Nummer</th><th>Product Naam</th><th>Leverancier Naam</th><th>Totaalprijs</th><th>Besteldatum</th></tr>";
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td>" . $row["bestellingnummer"] . "</td>";
+            echo "<td>" . $row["productnaam"] . "</td>";
+            echo "<td>" . $row["leveranciernaam"] . "</td>";
+            echo "<td>" . $row["totaalprijs"] . "</td>";
+            echo "<td>" . $row["besteldatum"] . "</td>";
+            echo "<td><a href='Bestellingen_edit.php?bestellingid=" . $row['bestellingid'] . "'>" . "Wijzig</a></td>";
+            echo "<td><a href='Bestellingen_delete.php?bestellingid=" . $row['bestellingid'] . "'>" . "Verwijderen</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Geen resultaten gevonden voor zoekwoord: $search_keyword";
+    }
+}
+
+// Functie om bestellingen bij te werken
+function updateBestelling($data) {
+    $conn = connectDb();
+    
+    // SQL-query om bestelling bij te werken
+    $sql = "UPDATE bestellingen SET productnaam = :ProductNaam, leveranciernaam = :Leveranciernaam, totaalprijs = :Totaalprijs, besteldatum = :Besteldatum WHERE bestellingid = :BestellingID";
+    
+    try {
+        // Bereid de SQL-statement voor
+        $stmt = $conn->prepare($sql);
+        
+        // Bind parameters
+        $stmt->bindParam(':ProductNaam', $data['ProductNaam']);
+        $stmt->bindParam(':Leveranciernaam', $data['Leveranciernaam']);
+        $stmt->bindParam(':Totaalprijs', $data['Totaalprijs']);
+        $stmt->bindParam(':Besteldatum', $data['Besteldatum']);
+        $stmt->bindParam(':BestellingID', $data['BestellingID']);
+        
+        // Voer de statement uit
+        $stmt->execute();
+        
+        // Controleer of er rijen zijn beïnvloed
+        if ($stmt->rowCount() > 0) {
+            return true; // Succesvol bijgewerkt
+        } else {
+            return false; // Geen rijen beïnvloed, waarschijnlijk geen wijziging gemaakt
+        }
+    } catch (PDOException $e) {
+        // Foutafhandeling
+        throw new Exception("Fout bijwerken van bestelling: " . $e->getMessage());
+    }
+}
+
+// Functie om bestelgegevens op te halen aan de hand van ID
+function getBestelling($BestellingID) {
+    $conn = connectDb();
+    
+    // Voorbereiden van de SQL-query om bestelling op te halen aan de hand van ID
+    $sql = "SELECT * FROM bestellingen WHERE bestellingid = :BestellingID";
+    
+    try {
+        // Voorbereiden van de statement
+        $stmt = $conn->prepare($sql);
+        
+        // Parameter binden
+        $stmt->bindParam(':BestellingID', $BestellingID);
+        
+        // Uitvoeren van de statement
+        $stmt->execute();
+        
+        // Bestelgegevens ophalen
+        $bestelling = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $bestelling;
+    } catch (PDOException $e) {
+        // Foutafhandeling
+        throw new Exception("Fout bij ophalen van bestelling: " . $e->getMessage());
+    }
+}
+
+// Functie om een nieuwe bestelling toe te voegen aan de database
+function addBestelling($Bestellingnummer, $ProductID, $LeverancierID, $Productnaam, $Leveranciernaam, $Totaalprijs, $Besteldatum) {
+    // Verbinding maken met de database
+    $conn = connectDb();
+
+    // SQL-query om een nieuwe bestelling toe te voegen
+    $sql = "INSERT INTO bestellingen (bestellingnummer, productid, leverancierid, productnaam, leveranciernaam, totaalprijs, besteldatum) 
+            VALUES (:Bestellingnummer, :ProductID, :LeverancierID, :Productnaam, :Leveranciernaam, :Totaalprijs, :Besteldatum)";
+    
+    try {
+        // Voorbereiden van de SQL-statement
+        $stmt = $conn->prepare($sql);
+
+        // Bind de parameters
+        $stmt->bindParam(':Bestellingnummer', $Bestellingnummer);
+        $stmt->bindParam(':ProductID', $ProductID);
+        $stmt->bindParam(':LeverancierID', $LeverancierID);
+        $stmt->bindParam(':Productnaam', $Productnaam);
+        $stmt->bindParam(':Leveranciernaam', $Leveranciernaam);
+        $stmt->bindParam(':Totaalprijs', $Totaalprijs);
+        $stmt->bindParam(':Besteldatum', $Besteldatum);
+
+        // Uitvoeren van de statement
+        $stmt->execute();
+    } catch (PDOException $e) {
+        // Foutafhandeling
+        throw new Exception("Fout bij het toevoegen van bestelling: " . $e->getMessage());
+    }
+}
+
+// Functie om een bestelling te verwijderen op basis van bestelling ID
+function deleteBestelling($bestelling_id) {
+    $conn = connectDb();
+    
+    try {
+        // Voorbereiden van de SQL-query om bestelling te verwijderen op basis van bestelling ID
+        $sql = "DELETE FROM bestellingen WHERE bestellingid = :bestelling_id";
+        
+        // Voorbereiden van de statement
+        $stmt = $conn->prepare($sql);
+        
+        // Parameter binden
+        $stmt->bindParam(':bestelling_id', $bestelling_id);
+        
+        // Uitvoeren van de statement
+        $stmt->execute();
+        
+        // Controleren of er rijen zijn verwijderd
+        if ($stmt->rowCount() > 0) {
+            return true; // Succesvol verwijderd
+        } else {
+            return false; // Geen rijen verwijderd, bestelling ID mogelijk niet gevonden
+        }
+    } catch (PDOException $e) {
+        // Foutafhandeling
+        throw new Exception("Fout bij het verwijderen van bestelling: " . $e->getMessage());
+    }
+}
+
 // Function to update product data
 function updateProduct($data) {
     $conn = connectDb();
